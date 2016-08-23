@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace KompaniInfo
 {
@@ -27,8 +30,14 @@ namespace KompaniInfo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
+			services.AddAuthorization();
+			services.AddMvc(config =>
+			{
+				var policy = new AuthorizationPolicyBuilder()
+								 .RequireAuthenticatedUser()
+								 .Build();
+				config.Filters.Add(new AuthorizeFilter(policy));
+			});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +58,16 @@ namespace KompaniInfo
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+			app.UseCookieAuthentication(new CookieAuthenticationOptions
+			{
+				AuthenticationScheme = "Cookie",
+				LoginPath = new PathString("/Login/Index/"),
+				AccessDeniedPath = new PathString("/Login/Forbidden/"),
+				AutomaticAuthenticate = true,
+				AutomaticChallenge = true
+			});
+
+			app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
