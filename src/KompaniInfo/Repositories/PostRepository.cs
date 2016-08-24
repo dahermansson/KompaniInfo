@@ -19,5 +19,10 @@ namespace KompaniInfo.Repositories
 		{
 			return _context.Post;
 		}
+		public void Skapa(Post post)
+		{
+			_context.Post.Add(post);
+			_context.SaveChanges();
+		}
 	}
 }

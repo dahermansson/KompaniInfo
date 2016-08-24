@@ -9,5 +9,6 @@ namespace KompaniInfo.Repositories.Interfaces
     public interface IPostRepository
     {
 		IEnumerable<Post> Get();
+		void Skapa(Post post);
     }
 }

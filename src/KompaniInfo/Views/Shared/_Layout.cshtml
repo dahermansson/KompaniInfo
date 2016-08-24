@@ -43,11 +43,15 @@
 		<a href="/Login/Index">Login</a> |
 		<a href="/Login/Logout">Logout</a> |
 		<a href="/">Hem</a> |
-		<a href="/Home/About">About</a>
-	</nav>
-	<div>
-		@RenderBody()
-	</div>
+		@if (User.Identity.IsAuthenticated && User.HasClaim(t => t.Type == System.Security.Claims.ClaimTypes.Role && t.Value == "Admin"))
+		{
+			<a href="/Post/Skapa">Skapa ny post</a>
+		}
+
+	</nav>				   
+	<div>				   
+		@RenderBody()	   
+	</div>				   
 	@RenderSection("scripts", required: false)
 </body>
 </html>
