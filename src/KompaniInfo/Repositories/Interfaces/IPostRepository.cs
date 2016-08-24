@@ -1,4 +1,5 @@
 ﻿using KompaniInfo.Models;
+using KompaniInfo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace KompaniInfo.Repositories.Interfaces
 {
     public interface IPostRepository
     {
-		IEnumerable<Post> Get();
+		IEnumerable<VMPost> Get();
 		void Skapa(Post post);
     }
 }

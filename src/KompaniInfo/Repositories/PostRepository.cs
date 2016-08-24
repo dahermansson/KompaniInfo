@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KompaniInfo.Models;
+using KompaniInfo.ViewModels;
 
 namespace KompaniInfo.Repositories
 {
@@ -15,9 +16,14 @@ namespace KompaniInfo.Repositories
 			_context = context;
 		}
 
-		public IEnumerable<Post> Get()
+		public IEnumerable<VMPost> Get()
 		{
-			return _context.Post;
+			var res = new List<VMPost>();
+			foreach (var p in _context.Post)
+			{
+				res.Add(new VMPost() { Id = p.Id, Datum = p.Datum, Innehall = p.Innehall });
+			}
+			return res;
 		}
 		public void Skapa(Post post)
 		{
