@@ -1,4 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<KompaniInfo.Models.Post>
+
+@foreach (var post in Model)
+{
+	<p>@Html.Raw(post.Innehall)</p>
 }
-Kräver inlogging

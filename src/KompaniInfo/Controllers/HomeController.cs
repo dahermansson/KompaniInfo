@@ -4,34 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using KompaniInfo.Repositories.Interfaces;
 
 namespace KompaniInfo.Controllers
 {
-  public class HomeController : Controller
-  {
-    public IActionResult Index()
-    {
-      return View();
-    }
+	public class HomeController : Controller
+	{
+		private readonly IPostRepository _context;
 
-    [Authorize(Roles = Roles.Admin)]
-    public IActionResult About()
-    {
-      ViewData["Message"] = "Your application description page.";
+		public HomeController(IPostRepository context)
+		{
+			_context = context;
+		}
 
-      return View();
-    }
+		public IActionResult Index()
+		{
+			return View(_context.Get());
+		}
 
-    public IActionResult Contact()
-    {
-      ViewData["Message"] = "Your contact page.";
-
-      return View();
-    }
-
-    public IActionResult Error()
-    {
-      return View();
-    }
-  }
+		public IActionResult Error()
+		{
+			return View();
+		}
+	}
 }
