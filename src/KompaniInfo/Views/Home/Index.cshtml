@@ -1,6 +1,4 @@
 ﻿@model IEnumerable<KompaniInfo.Models.Post>
+	
 
-@foreach (var post in Model)
-{
-	<p>@Html.Raw(post.Innehall)</p>
-}
+@Html.DisplayFor(m => m)

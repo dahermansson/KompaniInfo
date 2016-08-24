@@ -4,22 +4,10 @@
     ViewData["Title"] = "Skapa";
 }
 
-<h2>Skapa</h2>
+<h2>Skapa post</h2>
 
 <form asp-action="Skapa">
-    <div class="form-horizontal">
-        <h4>Post</h4>
-        <hr />
-        <input type="text" name="text" />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+	<textarea name="text" rows="15" cols="120"></textarea>
+        <input type="submit" value="Skapa"/>
 </form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
