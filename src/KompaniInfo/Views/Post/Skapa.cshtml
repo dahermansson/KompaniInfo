@@ -1,4 +1,4 @@
-@model KompaniInfo.Models.Post
+@model KompaniInfo.ViewModels.VMPost
 
 @{
     ViewData["Title"] = "Skapa";
@@ -6,21 +6,24 @@
 
 <h2>Skapa post</h2>
 
-<table>
+<table style="width:100%;">
   <tr>
-    <td>
+    <td style="width:50%">
       <form asp-action="Skapa">
-        <textarea name="text" rows="15" cols="80"></textarea><br />
+		@Html.LabelFor(m => m.Rubrik)<br />
+		@Html.TextBoxFor(m => m.Rubrik) @Html.ValidationMessageFor(m => m.Rubrik)<br /><br />
+	  	@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Rubrik)<br />
+		@Html.TextAreaFor(m => m.Innehall, new { style = "width: 700px; height:200px;" })
         <input type="submit" value="Posta" />
       </form>
     </td>
-    <td>
-      # Stor rubrik<br />
-      ## Mindre rubrik <br />
-      ### Liten rubrik <br />
+    <td style="width:50%">
+		# Stor rubrik<br />
+		## Mindre rubrik <br />
+		### Liten rubrik <br />
 
-      * rad 1 i lista<br />
-      * rad 2 i lista
+	    * rad 1 i lista<br />
+		* rad 2 i lista
     </td>
   </tr>
 

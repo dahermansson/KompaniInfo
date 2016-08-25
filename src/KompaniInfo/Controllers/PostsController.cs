@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using KompaniInfo.Models;
 using KompaniInfo.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using KompaniInfo.ViewModels;
 
 namespace KompaniInfo.Controllers
 {
@@ -25,12 +26,20 @@ namespace KompaniInfo.Controllers
 		{
 			return View();
 		}
+
 		[HttpPost]
-		public IActionResult Skapa(string text)
+		public IActionResult Skapa(VMPost vmPost)
 		{
-			Post p = new Post() { Datum = DateTime.Now, Innehall = text };
-			_context.Skapa(p);
-			return RedirectToAction("index", "home");
+			if (ModelState.IsValid)
+			{
+				vmPost.Datum = DateTime.Now;
+				PostTransform pt = new PostTransform();
+				Post post = pt.Transform(vmPost);
+				_context.Skapa(post);
+				return RedirectToAction("index", "home");
+			}
+			else
+				return View(vmPost);
 		}
 	}
 }

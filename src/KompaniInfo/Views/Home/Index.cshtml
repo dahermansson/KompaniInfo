@@ -1,4 +1,12 @@
-﻿@model IEnumerable<KompaniInfo.ViewModels.VMPost>
+﻿@model KompaniInfo.ViewModels.VMIndex
 	
-
-@Html.DisplayFor(m => m)
+<table style="width: 100%">
+	<tr>
+		<td style="width: 80%">
+			@Html.DisplayFor(m => m.Poster)
+		</td>
+		<td style="width: 20%; vertical-align: top">
+			@Html.DisplayFor(m => m.Rubriker)
+		</td>
+	</tr>
+</table>

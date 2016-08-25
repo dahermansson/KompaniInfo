@@ -8,9 +8,10 @@ using KompaniInfo.Models;
 namespace KompaniInfo.Migrations
 {
     [DbContext(typeof(KompaniInfoContext))]
-    partial class KompaniInfoContextModelSnapshot : ModelSnapshot
+    [Migration("20160825175336_lagtTillRubrik")]
+    partial class lagtTillRubrik
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

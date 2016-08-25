@@ -10,7 +10,11 @@ namespace KompaniInfo.ViewModels
 	{
 		public VMPost Transform(Post p)
 		{
-			return new VMPost() { Id = p.Id, Datum = p.Datum, Innehall = p.Innehall };
+			return new VMPost() { Id = p.Id, Datum = p.Datum, Innehall = p.Innehall, Rubrik = p.Rubrik };
+		}
+		public Post Transform(VMPost p)
+		{
+			return new Post() { Id = p.Id, Datum = p.Datum, Innehall = p.Innehall, Rubrik = p.Rubrik };
 		}
 	}
 }

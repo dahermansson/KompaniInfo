@@ -1,14 +1,13 @@
 ﻿@model KompaniInfo.ViewModels.VMPost
 
 
-<div class="post">
+<div class="post" style="margin-bottom: 120px;">
 	<p>
-		@Model.Datum <br />
+		<h1 style="display: inline">@Html.ActionLink(Model.Rubrik, "Post", "Home", new { Id = Model.Id })</h1> <small>@Model.Datum.ToString("yyyy-MM-dd")</small> <br />
 		--------------------
 	</p>
-
 	<p>
 		@Html.Raw(Model.Markdown)
 	</p>
-	<hr />
+	<hr style="width: 90%;" />
 </div>

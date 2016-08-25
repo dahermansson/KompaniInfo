@@ -21,12 +21,32 @@ namespace KompaniInfo.Controllers
 		public IActionResult Index()
 		{
 			PostTransform pt = new PostTransform();
-			var res = new List<VMPost>();
-			foreach (var post in _context.Get())
+			VMIndex vmIndex = new VMIndex();
+			foreach (var post in _context.GetOrderdTop10())
 			{
-				res.Add(pt.Transform(post));
+				vmIndex.Poster.Add(pt.Transform(post));
 			}
-			return View(res);
+			foreach (var rubrik in _context.Get().OrderByDescending(p => p.Datum))
+			{
+				vmIndex.Rubriker.Add(new VMPostlistaItem() { Id = rubrik.Id, Rubrik = rubrik.Rubrik });
+			}
+
+			return View(vmIndex);
+		}
+
+		public IActionResult Post(int id)
+		{
+			var post = _context.Get(id);
+			if (post != null)
+			{
+				PostTransform pt = new PostTransform();
+				var vmPost = pt.Transform(post);
+				return View(vmPost);
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
 		}
 
 		public IActionResult Error()

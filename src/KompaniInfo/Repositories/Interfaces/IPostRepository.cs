@@ -10,6 +10,8 @@ namespace KompaniInfo.Repositories.Interfaces
     public interface IPostRepository
     {
 		IEnumerable<Post> Get();
+		Post Get(int id);
+		IEnumerable<Post> GetOrderdTop10();
 		void Skapa(Post post);
     }
 }

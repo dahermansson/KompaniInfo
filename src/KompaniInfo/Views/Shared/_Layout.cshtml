@@ -39,6 +39,12 @@
 </head>
 <body>
 	<a href="/"><h1 class="title">KompaniInfo</h1></a>
+	@if (User.Identity.IsAuthenticated)
+	{
+	<nav>
+		<a href="/">Start</a>
+	</nav>
+	}
 	<div>
 		@RenderBody()	   
 	</div>
