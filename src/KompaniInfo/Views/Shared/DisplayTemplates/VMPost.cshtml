@@ -1,5 +1,14 @@
 ﻿@model KompaniInfo.ViewModels.VMPost
 
-<p>
-	@Html.Raw(Model.Markdown)
-</p>
+
+<div class="post">
+	<p>
+		@Model.Datum <br />
+		--------------------
+	</p>
+
+	<p>
+		@Html.Raw(Model.Markdown)
+	</p>
+	<hr />
+</div>

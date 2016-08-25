@@ -39,19 +39,19 @@
 </head>
 <body>
 	<a href="/"><h1 class="title">KompaniInfo</h1></a>
-	<nav>
-		<a href="/Login/Index">Login</a> |
-		<a href="/Login/Logout">Logout</a> |
-		<a href="/">Hem</a> |
-		@if (User.Identity.IsAuthenticated && User.HasClaim(t => t.Type == System.Security.Claims.ClaimTypes.Role && t.Value == "Admin"))
-		{
-			<a href="/Post/Skapa">Skapa ny post</a>
-		}
-
-	</nav>				   
-	<div>				   
+	<div>
 		@RenderBody()	   
-	</div>				   
+	</div>
+  @if (User.Identity.IsAuthenticated)
+  {
+    <div>
+      <a href="/Login/Logout">Logga ut</a>
+      @if (User.HasClaim(t => t.Type == System.Security.Claims.ClaimTypes.Role && t.Value == "Admin"))
+      {
+         <a href="/Post/Skapa">Skapa ny post</a>
+      }
+    </div>
+  }
 	@RenderSection("scripts", required: false)
 </body>
 </html>

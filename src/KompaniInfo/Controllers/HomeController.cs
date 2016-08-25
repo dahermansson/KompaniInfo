@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using KompaniInfo.Repositories.Interfaces;
+using KompaniInfo.ViewModels;
 
 namespace KompaniInfo.Controllers
 {
@@ -19,7 +20,13 @@ namespace KompaniInfo.Controllers
 
 		public IActionResult Index()
 		{
-			return View(_context.Get());
+			PostTransform pt = new PostTransform();
+			var res = new List<VMPost>();
+			foreach (var post in _context.Get())
+			{
+				res.Add(pt.Transform(post));
+			}
+			return View(res);
 		}
 
 		public IActionResult Error()

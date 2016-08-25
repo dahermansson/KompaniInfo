@@ -1,10 +1,6 @@
 ﻿using KompaniInfo.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using KompaniInfo.Models;
-using KompaniInfo.ViewModels;
 
 namespace KompaniInfo.Repositories
 {
@@ -16,14 +12,9 @@ namespace KompaniInfo.Repositories
 			_context = context;
 		}
 
-		public IEnumerable<VMPost> Get()
+		public IEnumerable<Post> Get()
 		{
-			var res = new List<VMPost>();
-			foreach (var p in _context.Post)
-			{
-				res.Add(new VMPost() { Id = p.Id, Datum = p.Datum, Innehall = p.Innehall });
-			}
-			return res;
+			return _context.Post;
 		}
 		public void Skapa(Post post)
 		{

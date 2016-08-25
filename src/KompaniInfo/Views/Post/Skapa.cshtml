@@ -6,8 +6,24 @@
 
 <h2>Skapa post</h2>
 
-<form asp-action="Skapa">
-	<textarea name="text" rows="15" cols="120"></textarea>
-        <input type="submit" value="Skapa"/>
-</form>
+<table>
+  <tr>
+    <td>
+      <form asp-action="Skapa">
+        <textarea name="text" rows="15" cols="80"></textarea><br />
+        <input type="submit" value="Posta" />
+      </form>
+    </td>
+    <td>
+      # Stor rubrik<br />
+      ## Mindre rubrik <br />
+      ### Liten rubrik <br />
+
+      * rad 1 i lista<br />
+      * rad 2 i lista
+    </td>
+  </tr>
+
+</table>
+
 

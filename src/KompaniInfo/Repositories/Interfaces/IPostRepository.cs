@@ -9,7 +9,7 @@ namespace KompaniInfo.Repositories.Interfaces
 {
     public interface IPostRepository
     {
-		IEnumerable<VMPost> Get();
+		IEnumerable<Post> Get();
 		void Skapa(Post post);
     }
 }

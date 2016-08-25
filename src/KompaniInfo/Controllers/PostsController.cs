@@ -30,10 +30,7 @@ namespace KompaniInfo.Controllers
 		{
 			Post p = new Post() { Datum = DateTime.Now, Innehall = text };
 			_context.Skapa(p);
-			return View();
+			return RedirectToAction("index", "home");
 		}
-
-
-
 	}
 }
