@@ -66,6 +66,10 @@ namespace KompaniInfo
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
+				using (var context = new KompaniInfoContext(app.ApplicationServices.GetRequiredService<DbContextOptions<KompaniInfoContext>>()))
+				{
+					context.Database.Migrate();
+				}
 			}
 
 			app.UseStaticFiles();
