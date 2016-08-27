@@ -14,5 +14,6 @@ namespace KompaniInfo.Models
         }
 
         public DbSet<Post> Post { get; set; }
-    }
+		public DbSet<Sida> Sida { get; set; }
+	}
 }

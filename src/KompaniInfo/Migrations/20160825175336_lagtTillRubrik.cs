@@ -18,7 +18,8 @@ namespace KompaniInfo.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Innehall",
                 table: "Post",
-                nullable: false);
+                nullable: false, 
+				defaultValue: "DefaultInnehåll");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
