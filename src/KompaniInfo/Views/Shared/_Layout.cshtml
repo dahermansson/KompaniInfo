@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using KompaniInfo.Components
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -42,7 +43,7 @@
 	@if (User.Identity.IsAuthenticated)
 	{
 	<nav>
-		<a href="/">Start</a>
+		<a href="/">Start</a> @await Component.InvokeAsync(nameof(SidaNavigering))
 	</nav>
 	}
 	<div>

@@ -1,0 +1,6 @@
+﻿@model Dictionary<int, string>
+
+@foreach (var item in Model)
+{
+	@Html.Raw(" | ") @Html.ActionLink(item.Value, "Visa", "Sida", new { Id = item.Key });
+}
