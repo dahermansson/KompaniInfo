@@ -1,0 +1,12 @@
+﻿@using KompaniInfo.ViewModels
+@model KompaniInfo.Models.Sida
+	
+<div class="post" style="margin-bottom: 120px;">
+	<p>
+		<h1>@Model.Namn</h1>
+	</p>
+	<p>
+		@Html.Raw(Model.Innehall.Markdown())
+	</p>
+	<hr style="width: 90%;" />
+</div>

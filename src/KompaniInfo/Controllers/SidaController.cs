@@ -16,6 +16,19 @@ namespace KompaniInfo.Controllers
 			_context = context;
 		}
 
+		public IActionResult Index(int id)
+		{
+			var sida = _context.Get(id);
+			if (sida != null)
+			{
+				return View(sida);
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
+
 		public IActionResult GetLankarForMeny()
 		{
 			return PartialView("LankarTillSidor.cshtml", _context.GetLankarToSidor());

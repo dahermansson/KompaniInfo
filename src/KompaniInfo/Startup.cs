@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using KompaniInfo.Models;
 using KompaniInfo.Repositories.Interfaces;
 using KompaniInfo.Repositories;
+using Microsoft.AspNetCore.Routing;
 
 namespace KompaniInfo
 {
@@ -58,7 +59,7 @@ namespace KompaniInfo
 		{
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
-			
+
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -85,11 +86,19 @@ namespace KompaniInfo
 			});
 
 			app.UseMvc(routes =>
-				  {
-					  routes.MapRoute(
-					name: "default",
-					template: "{controller=Home}/{action=Index}/{id?}");
-				  });
+				{
+					routes.MapRoute(
+						name: "sidor",
+						template: "Sida/{id:int}",
+						defaults: new { controller = "Sida", action = "Index" });
+					routes.MapRoute(
+						name: "poster",
+						template: "Post/{id:int}",
+						defaults: new { controller = "Post", action = "Index" });
+					routes.MapRoute(
+						name: "default",
+						template: "{controller=Home}/{action=Index}/{id?}");
+				});
 		}
 	}
 }

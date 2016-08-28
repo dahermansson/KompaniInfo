@@ -34,21 +34,6 @@ namespace KompaniInfo.Controllers
 			return View(vmIndex);
 		}
 
-		public IActionResult Post(int id)
-		{
-			var post = _context.Get(id);
-			if (post != null)
-			{
-				PostTransform pt = new PostTransform();
-				var vmPost = pt.Transform(post);
-				return View(vmPost);
-			}
-			else
-			{
-				return RedirectToAction("Error");
-			}
-		}
-
 		public IActionResult Error()
 		{
 			return View();

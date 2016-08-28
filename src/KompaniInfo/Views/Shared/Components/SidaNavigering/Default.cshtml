@@ -2,5 +2,5 @@
 
 @foreach (var item in Model)
 {
-	@Html.Raw(" | ") @Html.ActionLink(item.Value, "Visa", "Sida", new { Id = item.Key });
+	@Html.Raw(" | ") @Html.RouteLink(item.Value, "sidor", routeValues: new { Id = item.Key });
 }
