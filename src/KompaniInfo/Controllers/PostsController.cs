@@ -12,7 +12,6 @@ using KompaniInfo.ViewModels;
 
 namespace KompaniInfo.Controllers
 {
-	[Authorize(Roles = Roles.Admin)]
     public class PostController : Controller
     {
         private readonly IPostRepository _context;
@@ -21,26 +20,6 @@ namespace KompaniInfo.Controllers
         {
             _context = context;    
         }
-
-		public IActionResult Skapa()
-		{
-			return View();
-		}
-
-		[HttpPost]
-		public IActionResult Skapa(VMPost vmPost)
-		{
-			if (ModelState.IsValid)
-			{
-				vmPost.Datum = DateTime.Now;
-				PostTransform pt = new PostTransform();
-				Post post = pt.Transform(vmPost);
-				_context.Skapa(post);
-				return RedirectToAction("index", "home");
-			}
-			else
-				return View(vmPost);
-		}
 
 		public IActionResult Index(int id)
 		{
@@ -55,6 +34,28 @@ namespace KompaniInfo.Controllers
 			{
 				return RedirectToAction("Error");
 			}
+		}
+
+		[Authorize(Roles = Roles.Admin)]
+		public IActionResult Skapa()
+		{
+			return View();
+		}
+
+		[Authorize(Roles = Roles.Admin)]
+		[HttpPost]
+		public IActionResult Skapa(VMPost vmPost)
+		{
+			if (ModelState.IsValid)
+			{
+				vmPost.Datum = DateTime.Now;
+				PostTransform pt = new PostTransform();
+				Post post = pt.Transform(vmPost);
+				_context.Skapa(post);
+				return RedirectToAction("index", "home");
+			}
+			else
+				return View(vmPost);
 		}
 	}
 }

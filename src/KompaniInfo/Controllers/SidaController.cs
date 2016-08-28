@@ -1,5 +1,6 @@
 ﻿using KompaniInfo.Models;
 using KompaniInfo.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,13 @@ namespace KompaniInfo.Controllers
 			return PartialView("LankarTillSidor.cshtml", _context.GetLankarToSidor());
 		}
 
+		[Authorize(Roles = Roles.Admin)]
 		public IActionResult Skapa()
 		{
 			return View();
 		}
 
+		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
 		public IActionResult Skapa(Sida sida)
 		{

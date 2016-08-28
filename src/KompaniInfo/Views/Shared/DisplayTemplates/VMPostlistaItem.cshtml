@@ -1,5 +1,5 @@
 ﻿@model KompaniInfo.ViewModels.VMPostlistaItem
 <p>
-@Html.ActionLink(Model.Rubrik, "Post", "Home", new { Id = Model.Id }) <br />
+@Html.RouteLink(Model.Rubrik, "poster", new { Id = Model.Id }) <br />
 	
 </p>
