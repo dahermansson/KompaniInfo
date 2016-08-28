@@ -11,7 +11,7 @@ namespace KompaniInfo.Models
 		public int Id { get; set; }
 
 		[Required(AllowEmptyStrings = false, ErrorMessage = "Innehåll måste anges")]
-		public string Innahall { get; set; }
+		public string Innehall { get; set; }
 
 		[Required(AllowEmptyStrings = false, ErrorMessage = "Namn måste anges")]
 		[MaxLength(100)]

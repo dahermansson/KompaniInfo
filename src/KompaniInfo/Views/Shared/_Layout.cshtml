@@ -56,7 +56,8 @@
       @if (User.HasClaim(t => t.Type == System.Security.Claims.ClaimTypes.Role && t.Value == "Admin"))
       {
          <a href="/Post/Skapa">Skapa ny post</a>
-      }
+		<a href="/Sida/Skapa">Skapa ny sida</a>
+	  }
     </div>
   }
 	@RenderSection("scripts", required: false)

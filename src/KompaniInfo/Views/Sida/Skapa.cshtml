@@ -1,0 +1,32 @@
+@model KompaniInfo.Models.Sida
+
+@{
+    ViewData["Title"] = "Skapa";
+}
+
+<h2>Skapa sida</h2>
+
+<table style="width:100%;">
+  <tr>
+    <td style="width:50%">
+      <form asp-action="Skapa">
+		@Html.LabelFor(m => m.Namn)<br />
+		@Html.TextBoxFor(m => m.Namn) @Html.ValidationMessageFor(m => m.Namn)<br /><br />
+	  	@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Innehall)<br />
+		@Html.TextAreaFor(m => m.Innehall, new { style = "width: 700px; height:200px;" })
+        <input type="submit" value="Posta" />
+      </form>
+    </td>
+    <td style="width:50%">
+		# Stor rubrik<br />
+		## Mindre rubrik <br />
+		### Liten rubrik <br />
+
+	    * rad 1 i lista<br />
+		* rad 2 i lista
+    </td>
+  </tr>
+
+</table>
+
+
