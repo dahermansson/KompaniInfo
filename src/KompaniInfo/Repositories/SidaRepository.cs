@@ -30,6 +30,12 @@ namespace KompaniInfo.Repositories
 			_context.Sida.Add(sida);
 			_context.SaveChanges();
 		}
-		
+
+		public void Andra(Sida sida)
+		{
+			_context.Sida.Update(sida);
+			_context.SaveChanges();
+		}
+
 	}
 }

@@ -53,5 +53,32 @@ namespace KompaniInfo.Controllers
 			else
 				return View(sida);
 		}
+
+		[Authorize(Roles = Roles.Admin)]
+		public IActionResult Andra(int id)
+		{
+			var sida = _context.Get(id);
+			if (sida != null)
+			{
+				return View(sida);
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
+
+		[Authorize(Roles = Roles.Admin)]
+		[HttpPost]
+		public IActionResult Andra(Sida sida)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.Andra(sida);
+				return RedirectToAction("index", "home");
+			}
+			else
+				return View(sida);
+		}
 	}
 }

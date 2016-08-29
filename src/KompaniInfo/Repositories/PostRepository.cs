@@ -28,11 +28,15 @@ namespace KompaniInfo.Repositories
 			return _context.Post.OrderByDescending(p => p.Datum).Take(10);
 		}
 
-
-
 		public void Skapa(Post post)
 		{
 			_context.Post.Add(post);
+			_context.SaveChanges();
+		}
+
+		public void Andra(Post post)
+		{
+			_context.Post.Update(post);
 			_context.SaveChanges();
 		}
 	}

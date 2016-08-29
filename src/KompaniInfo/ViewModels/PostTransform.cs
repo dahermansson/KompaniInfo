@@ -16,5 +16,11 @@ namespace KompaniInfo.ViewModels
 		{
 			return new Post() { Id = p.Id, Datum = p.Datum, Innehall = p.Innehall, Rubrik = p.Rubrik };
 		}
+		public Post UpdateTransform(VMPost p, Post andraPost)
+		{
+			andraPost.Innehall = p.Innehall;
+			andraPost.Rubrik = p.Rubrik;
+			return andraPost;
+		}
 	}
 }

@@ -1,3 +1,5 @@
 ﻿@model KompaniInfo.ViewModels.VMPost
 	
 @Html.DisplayFor(m => m)
+
+@Html.ActionLink("Ändra", "Andra", "Post", new { Id = Model.Id })

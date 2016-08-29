@@ -1,0 +1,32 @@
+@model KompaniInfo.ViewModels.VMPost
+
+@{
+    ViewData["Title"] = "Ändra";
+}
+
+<h2>Skapa post</h2>
+
+<table style="width:100%;">
+  <tr>
+    <td style="width:50%">
+      <form asp-action="Andra">
+		@Html.LabelFor(m => m.Rubrik)<br />
+		@Html.TextBoxFor(m => m.Rubrik) @Html.ValidationMessageFor(m => m.Rubrik)<br /><br />
+	  	@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Rubrik)<br />
+		@Html.TextAreaFor(m => m.Innehall, new { style = "width: 700px; height:200px;" })
+        <input type="submit" value="Ändra" />
+      </form>
+    </td>
+    <td style="width:50%">
+		# Stor rubrik<br />
+		## Mindre rubrik <br />
+		### Liten rubrik <br />
+
+	    * rad 1 i lista<br />
+		* rad 2 i lista
+    </td>
+  </tr>
+
+</table>
+
+

@@ -12,5 +12,6 @@ namespace KompaniInfo.Repositories.Interfaces
 		Dictionary<int, string> GetLankarToSidor();
 		Sida Get(int id);
 		void Skapa(Sida sida);
+		void Andra(Sida sida);
     }
 }

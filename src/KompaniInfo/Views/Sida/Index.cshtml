@@ -9,4 +9,5 @@
 		@Html.Raw(Model.Innehall.Markdown())
 	</p>
 	<hr style="width: 90%;" />
+	@Html.ActionLink("Ändra", "Andra", "Sida", new { id = Model.Id})
 </div>

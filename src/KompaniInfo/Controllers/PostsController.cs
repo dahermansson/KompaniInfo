@@ -57,5 +57,38 @@ namespace KompaniInfo.Controllers
 			else
 				return View(vmPost);
 		}
+
+		[Authorize(Roles = Roles.Admin)]
+		public IActionResult Andra(int id)
+		{
+			var post = _context.Get(id);
+			if (post != null)
+			{
+				PostTransform pt = new PostTransform();
+				var vmPost = pt.Transform(post);
+				return View(vmPost);
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
+
+
+		[Authorize(Roles = Roles.Admin)]
+		[HttpPost]
+		public IActionResult Andra(VMPost vmPost)
+		{
+			if (ModelState.IsValid)
+			{
+				var andraPost = _context.Get(vmPost.Id);
+				PostTransform pt = new PostTransform();
+				Post post = pt.UpdateTransform(vmPost, andraPost);
+				_context.Andra(post);
+				return RedirectToAction("index", "home");
+			}
+			else
+				return View(vmPost);
+		}
 	}
 }
