@@ -13,5 +13,6 @@ namespace KompaniInfo.Repositories.Interfaces
 		Sida Get(int id);
 		void Skapa(Sida sida);
 		void Andra(Sida sida);
+		void TaBort(Sida sida);
     }
 }

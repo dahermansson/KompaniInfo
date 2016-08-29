@@ -74,7 +74,6 @@ namespace KompaniInfo.Controllers
 			}
 		}
 
-
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
 		public IActionResult Andra(VMPost vmPost)
@@ -89,6 +88,21 @@ namespace KompaniInfo.Controllers
 			}
 			else
 				return View(vmPost);
+		}
+
+		[Authorize(Roles = Roles.Admin)]
+		public IActionResult TaBort(int id)
+		{
+			var post = _context.Get(id);
+			if (post != null)
+			{
+				_context.TaBort(post);
+				return RedirectToAction("Index", "Home");
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
 		}
 	}
 }

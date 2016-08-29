@@ -2,4 +2,11 @@
 	
 @Html.DisplayFor(m => m)
 
-@Html.ActionLink("Ändra", "Andra", "Post", new { Id = Model.Id })
+@if (User.Identity.IsAuthenticated && User.HasClaim(t => t.Type == System.Security.Claims.ClaimTypes.Role && t.Value == "Admin"))
+{
+	<div>
+		@Html.ActionLink("Ändra", "Andra", "Post", new { Id = Model.Id })
+		@Html.ActionLink("Ta bort", "TaBort", "Post", new { Id = Model.Id },
+			new { onclick = "return confirm('Är du säker att du vill ta bort den här sidan?');" })
+	</div>
+}

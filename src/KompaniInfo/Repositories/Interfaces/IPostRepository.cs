@@ -14,5 +14,6 @@ namespace KompaniInfo.Repositories.Interfaces
 		IEnumerable<Post> GetOrderdTop10();
 		void Skapa(Post post);
 		void Andra(Post post);
+		void TaBort(Post post);
 	}
 }

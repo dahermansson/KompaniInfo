@@ -39,5 +39,10 @@ namespace KompaniInfo.Repositories
 			_context.Post.Update(post);
 			_context.SaveChanges();
 		}
+		public void TaBort(Post post)
+		{
+			_context.Post.Remove(post);
+			_context.SaveChanges();
+		}
 	}
 }

@@ -37,5 +37,11 @@ namespace KompaniInfo.Repositories
 			_context.SaveChanges();
 		}
 
+		public void TaBort(Sida sida)
+		{
+			_context.Sida.Remove(sida);
+			_context.SaveChanges();
+		}
+
 	}
 }

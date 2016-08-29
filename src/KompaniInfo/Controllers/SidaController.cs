@@ -80,5 +80,20 @@ namespace KompaniInfo.Controllers
 			else
 				return View(sida);
 		}
+
+		[Authorize(Roles = Roles.Admin)]
+		public IActionResult TaBort(int id)
+		{
+			var sida = _context.Get(id);
+			if (sida != null)
+			{
+				_context.TaBort(sida);
+				return RedirectToAction("Index", "Home");
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
 	}
 }

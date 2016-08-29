@@ -1,5 +1,5 @@
 ﻿@using KompaniInfo.Components
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -55,7 +55,8 @@
       <a href="/Login/Logout">Logga ut</a>
       @if (User.HasClaim(t => t.Type == System.Security.Claims.ClaimTypes.Role && t.Value == "Admin"))
       {
-         <a href="/Post/Skapa">Skapa ny post</a>
+		
+        <a href="/Post/Skapa">Skapa ny post</a>
 		<a href="/Sida/Skapa">Skapa ny sida</a>
 	  }
     </div>

@@ -9,12 +9,12 @@
 <table style="width:100%;">
   <tr>
     <td style="width:50%">
-      <form asp-action="Andra">
+      <form asp-action="Andra" enctype="text/plain">
 		@Html.LabelFor(m => m.Namn)<br />
 		@Html.TextBoxFor(m => m.Namn) @Html.ValidationMessageFor(m => m.Namn)<br /><br />
 	  	@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Innehall)<br />
 		@Html.TextAreaFor(m => m.Innehall, new { style = "width: 700px; height:200px;" })
-        <input type="submit" value="Ändra" />
+        <input type="submit" value="Spara" />
       </form>
     </td>
     <td style="width:50%">
