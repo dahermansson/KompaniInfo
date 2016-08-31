@@ -9,6 +9,7 @@ using KompaniInfo.Models;
 using KompaniInfo.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using KompaniInfo.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace KompaniInfo.Controllers
 {
@@ -44,8 +45,14 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Skapa(VMPost vmPost)
+		public IActionResult Skapa(VMPost vmPost, string btn, IFormFile bild)
 		{
+			if(btn == "LaddaUppBild" && bild != null)
+			{
+				ModelState.Clear();
+				vmPost.Innehall += Environment.NewLine + bild.FileName;
+				return View(vmPost);
+			}
 			if (ModelState.IsValid)
 			{
 				vmPost.Datum = DateTime.Now;
@@ -55,7 +62,7 @@ namespace KompaniInfo.Controllers
 				return RedirectToAction("index", "home");
 			}
 			else
-				return View(vmPost);
+				return View();
 		}
 
 		[Authorize(Roles = Roles.Admin)]

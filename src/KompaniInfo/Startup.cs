@@ -75,7 +75,6 @@ namespace KompaniInfo
 			}
 
 			app.UseStaticFiles();
-
 			app.UseCookieAuthentication(new CookieAuthenticationOptions
 			{
 				AuthenticationScheme = "Cookie",
