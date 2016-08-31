@@ -9,12 +9,14 @@
 <table style="width:100%;">
   <tr>
     <td style="width:50%">
-      <form asp-action="Andra" accept-charset="utf-8">
+      <form asp-action="Andra" enctype="multipart/form-data">
 		@Html.LabelFor(m => m.Rubrik)<br />
 		@Html.TextBoxFor(m => m.Rubrik) @Html.ValidationMessageFor(m => m.Rubrik)<br /><br />
 	  	@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Rubrik)<br />
 		@Html.TextAreaFor(m => m.Innehall, new { style = "width: 700px; height:200px;" })
-        <input type="submit" value="Spara" />
+	  	<input type="file" name="fil" />
+	  	<button name="btn" value="LaddaUppBild" type="submit">Ladda upp bild</button>
+	  	<button name="btn" value="Spara" type="submit">Spara</button>
       </form>
     </td>
     <td style="width:50%">

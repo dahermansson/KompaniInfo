@@ -1,6 +1,8 @@
 ﻿using KompaniInfo.Models;
 using KompaniInfo.Repositories.Interfaces;
+using KompaniInfo.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -43,12 +45,23 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Skapa(Sida sida)
+		public IActionResult Skapa(Sida sida, string btn, IFormFile fil)
 		{
+			if (btn == "LaddaUppBild" && fil != null)
+			{
+				BildService service = new BildService();
+				if (!service.ValideraFil(fil))
+					return View(sida);
+				var bild = service.SparaBild(fil);
+				_context.SparaBild(bild);
+				ModelState.Clear();
+				sida.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
+				return View(sida);
+			}
 			if (ModelState.IsValid)
 			{
 				_context.Skapa(sida);
-				return RedirectToAction("index", "home");
+				return RedirectToRoute("sidor", new { Id = sida.Id });
 			}
 			else
 				return View(sida);
@@ -70,12 +83,23 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Andra(Sida sida)
+		public IActionResult Andra(Sida sida, string btn, IFormFile fil)
 		{
+			if (btn == "LaddaUppBild" && fil != null)
+			{
+				BildService service = new BildService();
+				if (!service.ValideraFil(fil))
+					return View(sida);
+				var bild = service.SparaBild(fil);
+				_context.SparaBild(bild);
+				ModelState.Clear();
+				sida.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
+				return View(sida);
+			}
 			if (ModelState.IsValid)
 			{
 				_context.Andra(sida);
-				return RedirectToAction("index", "home");
+				return RedirectToRoute("sidor", new { Id = sida.Id });
 			}
 			else
 				return View(sida);

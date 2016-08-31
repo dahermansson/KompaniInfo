@@ -10,6 +10,8 @@ using KompaniInfo.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using KompaniInfo.ViewModels;
 using Microsoft.AspNetCore.Http;
+using System.IO;
+using KompaniInfo.Services;
 
 namespace KompaniInfo.Controllers
 {
@@ -45,12 +47,17 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Skapa(VMPost vmPost, string btn, IFormFile bild)
+		public IActionResult Skapa(VMPost vmPost, string btn, IFormFile fil)
 		{
-			if(btn == "LaddaUppBild" && bild != null)
+			if(btn == "LaddaUppBild" && fil != null)
 			{
+				BildService service = new BildService();
+				if (!service.ValideraFil(fil))
+					return View(vmPost);
+				var bild = service.SparaBild(fil);
+				_context.SparaBild(bild);
 				ModelState.Clear();
-				vmPost.Innehall += Environment.NewLine + bild.FileName;
+				vmPost.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
 				return View(vmPost);
 			}
 			if (ModelState.IsValid)
@@ -83,8 +90,19 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Andra(VMPost vmPost)
+		public IActionResult Andra(VMPost vmPost, string btn, IFormFile fil)
 		{
+			if (btn == "LaddaUppBild" && fil != null)
+			{
+				BildService service = new BildService();
+				if (!service.ValideraFil(fil))
+					return View(vmPost);
+				var bild = service.SparaBild(fil);
+				_context.SparaBild(bild);
+				ModelState.Clear();
+				vmPost.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
+				return View(vmPost);
+			}
 			if (ModelState.IsValid)
 			{
 				var andraPost = _context.Get(vmPost.Id);

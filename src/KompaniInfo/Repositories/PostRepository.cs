@@ -44,5 +44,11 @@ namespace KompaniInfo.Repositories
 			_context.Post.Remove(post);
 			_context.SaveChanges();
 		}
+
+		public void SparaBild(Bild bild)
+		{
+			_context.Add(bild);
+			_context.SaveChanges();
+		}
 	}
 }

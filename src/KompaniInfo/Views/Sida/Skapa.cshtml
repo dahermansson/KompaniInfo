@@ -14,8 +14,9 @@
 		@Html.TextBoxFor(m => m.Namn) @Html.ValidationMessageFor(m => m.Namn)<br /><br />
 	  	@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Innehall)<br />
 		@Html.TextAreaFor(m => m.Innehall, new { style = "width: 700px; height:200px;" })
-        
-		<input type="submit" value="Posta" />
+	  	<input type="file" name="fil" />
+	  	<button name="btn" value="LaddaUppBild" type="submit">Ladda upp bild</button>
+	  	<button name="btn" value="Spara" type="submit">Spara</button>
       </form>
     </td>
     <td style="width:50%">
