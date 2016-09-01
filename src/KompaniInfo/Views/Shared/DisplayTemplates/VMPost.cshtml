@@ -2,12 +2,9 @@
 @model VMPost
 
 
-<div class="post" style="margin-bottom: 120px;">
-	<p>
-		<h1 style="display: inline">@Html.RouteLink(Model.Rubrik, "poster", new { Id = Model.Id })</h1> <small>@Model.Datum.ToString("yyyy-MM-dd")</small> <br />
-	</p>
-	<p>
-		@Html.Raw(Model.Innehall.Markdown())
-	</p>
-	<hr style="width: 90%;" />
+<div class="post" style="margin-bottom: 60px;">
+	<h2 style="font-size: 40px;margin-bottom:5px;">@Html.RouteLink(Model.Rubrik, "poster", new { Id = Model.Id })</h2>
+	<p style="color: #999;">@Model.Datum.ToString("MMMM d, yyyy")</p>
+	@Html.Raw(Model.Innehall.Markdown())
+	<hr/>
 </div>

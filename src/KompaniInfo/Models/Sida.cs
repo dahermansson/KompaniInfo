@@ -11,6 +11,7 @@ namespace KompaniInfo.Models
 		public int Id { get; set; }
 
 		[Required(AllowEmptyStrings = false, ErrorMessage = "Innehåll måste anges")]
+		[Display(Name ="Innehåll")]
 		public string Innehall { get; set; }
 
 		[Required(AllowEmptyStrings = false, ErrorMessage = "Namn måste anges")]

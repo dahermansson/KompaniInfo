@@ -8,7 +8,7 @@
 	<p>
 		@Html.Raw(Model.Innehall.Markdown())
 	</p>
-	<hr style="width: 90%;" />
+
 @if (User.Identity.IsAuthenticated && User.HasClaim(t => t.Type == System.Security.Claims.ClaimTypes.Role && t.Value == "Admin"))
 {
 	<div>

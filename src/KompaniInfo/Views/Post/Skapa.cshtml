@@ -1,34 +1,39 @@
 @model KompaniInfo.ViewModels.VMPost
 
 @{
-    ViewData["Title"] = "Skapa";
+	ViewData["Title"] = "Skapa";
 }
-
 <h2>Skapa post</h2>
 
-<table style="width:100%;">
-  <tr>
-    <td style="width:50%">
-      <form asp-action="Skapa" enctype="multipart/form-data">
-		@Html.LabelFor(m => m.Rubrik)<br />
-		@Html.TextBoxFor(m => m.Rubrik) @Html.ValidationMessageFor(m => m.Rubrik)<br /><br />
-	  	@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Innehall)<br />
-		@Html.TextAreaFor(m => m.Innehall, new { style = "width: 700px; height:200px;" })
-	  	<input type="file" name="fil" /> 
-	  	<button name="btn" value="LaddaUppBild" type="submit">Ladda upp bild</button>
-	  	<button name="btn" value="Spara" type="submit">Spara</button>
-	  </form>
-    </td>
-    <td style="width:50%">
-		# Stor rubrik<br />
-		## Mindre rubrik <br />
-		### Liten rubrik <br />
-
-	    * rad 1 i lista<br />
-		* rad 2 i lista
-    </td>
-  </tr>
-
-</table>
+<div class="row">
+	<div class="col-md-8">
+		<div class="input-group">
+			<form asp-action="Skapa" enctype="multipart/form-data">
+				@Html.LabelFor(m => m.Rubrik) @Html.ValidationMessageFor(m => m.Rubrik, "", new { style = "color: red;"})<br />
+				@Html.TextBoxFor(m => m.Rubrik) <br /><br />
+				@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Innehall, "", new { style = "color: red;" })<br />
+				@Html.TextAreaFor(m => m.Innehall, new { style = "width: 700px; height:200px; margin-bottom: 25px;" })
+				<div role="group">
+					<input type="file" name="fil" style="margin-bottom: 25px; margin-right: 20px; display: inline; float:left;" />
+					<button name="btn" class="btn btn-info" value="LaddaUppBild" type="submit">Ladda upp bild</button>
+				</div>
+				<br />
+				<div class="btn-group">
+					<button name="btn" class="btn btn-primary" value="Spara" type="submit">Spara</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<h1># Stor rubrik</h1><br />
+		<h2>## Mindre rubrik</h2> <br />
+		<h3>### Liten rubrik</h3> <br />
+		<ul>
+			<li>* rad 1 i lista</li>
+			<li>* rad 2 i lista</li>
+		</ul>
+		<a href="https://daringfireball.net/projects/markdown/syntax">[Text](url)</a>
+	</div>
+</div>
 
 
