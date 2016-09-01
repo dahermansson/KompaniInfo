@@ -2,6 +2,12 @@
 
 @using (Html.BeginForm())
 {
-	<input type="password" name="password" />
-	<input type="submit" value="Ok" />
+	<div class="col-md-3">
+		<div class="input-group">
+			<input type="password" name="password" class="form-control" placeholder="Lösenfras" />
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="submit">Gå in!</button>
+			</span>
+		</div>
+	</div>
 }
