@@ -15,6 +15,7 @@ using KompaniInfo.Models;
 using KompaniInfo.Repositories.Interfaces;
 using KompaniInfo.Repositories;
 using Microsoft.AspNetCore.Routing;
+using System.Globalization;
 
 namespace KompaniInfo
 {
@@ -74,6 +75,14 @@ namespace KompaniInfo
 					context.Database.Migrate();
 				}
 			}
+            var supportedCultures = new[] { new CultureInfo("sv-SE") };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("sv-SE"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
 
 			app.UseStaticFiles();
 			app.UseCookieAuthentication(new CookieAuthenticationOptions
