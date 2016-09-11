@@ -1,11 +1,11 @@
 ﻿@model KompaniInfo.Models.Sida
 
 <label asp-for="Namn"></label>
-<span asp-validation-for="Namn" style="color: red"></span><br />
+<span asp-validation-for="Namn" class="text-danger"></span><br />
 <input asp-for="Namn" class="form-control" /><br />
 
 <label asp-for="Innehall"></label>
-<span asp-validation-for="Innehall" style="color: red"></span><br />
+<span asp-validation-for="Innehall" class="text-danger"></span><br />
 <textarea asp-for="Innehall" class="form-control" style="width: 700px; height:200px; margin-bottom: 25px;"></textarea>
 
 <div role="group">

@@ -1,11 +1,11 @@
 ﻿@model KompaniInfo.ViewModels.VMPost
 
 <label asp-for="Rubrik"></label>
-<span asp-validation-for="Rubrik" style="color:red"></span><br />
+<span asp-validation-for="Rubrik" class="text-danger"></span><br />
 <input asp-for="Rubrik" class="form-control" />
 
 <label asp-for="Innehall"></label>
-<span asp-validation-for="Innehall" style="color: red"></span><br />
+<span asp-validation-for="Innehall" class="text-danger"></span><br />
 <textarea asp-for="Innehall" class="form-control" style="width: 700px; height:200px; margin-bottom: 25px;"></textarea>
 
 <div role="group">
