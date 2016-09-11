@@ -1,9 +1,13 @@
 ﻿@model KompaniInfo.ViewModels.VMPost
 
-@Html.LabelFor(m => m.Rubrik) @Html.ValidationMessageFor(m => m.Rubrik, "", new { style = "color: red;" })<br />
-@Html.TextBoxFor(m => m.Rubrik, new { @class = "form-control" }) <br /><br />
-@Html.LabelFor(m => m.Innehall) @Html.ValidationMessageFor(m => m.Innehall, "", new { style = "color: red;" })<br />
-@Html.TextAreaFor(m => m.Innehall, new { @class = "form-control", style = "width: 700px; height:200px; margin-bottom: 25px;" })
+<label asp-for="Rubrik"></label>
+<span asp-validation-for="Rubrik" style="color:red"></span><br />
+<input asp-for="Rubrik" class="form-control" />
+
+<label asp-for="Innehall"></label>
+<span asp-validation-for="Innehall" style="color: red"></span><br />
+<textarea asp-for="Innehall" class="form-control" style="width: 700px; height:200px; margin-bottom: 25px;"></textarea>
+
 <div role="group">
 	<input type="file" name="fil" style="margin-bottom: 25px; margin-right: 20px; display: inline; float:left;" />
 	<button name="btn" class="btn btn-info" value="LaddaUppBild" type="submit">Ladda upp bild</button>
