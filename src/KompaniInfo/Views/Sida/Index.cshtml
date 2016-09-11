@@ -5,9 +5,7 @@
 	<p>
 		<h1>@Model.Namn</h1>
 	</p>
-	<p>
-		@Html.Raw(Model.Innehall.Markdown())
-	</p>
+	<markdown asp-markdown-for="@Model.Innehall"></markdown>
 
 @if (User.Identity.IsAuthenticated && User.HasClaim(t => t.Type == System.Security.Claims.ClaimTypes.Role && t.Value == "Admin"))
 {
