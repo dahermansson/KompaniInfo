@@ -7,26 +7,26 @@ using KompaniInfo.Models;
 
 namespace KompaniInfo.Repositories
 {
-	public class BildRepository : IBildRepository
+	public class FilRepository : IFilRepository
 	{
 		private KompaniInfoContext _context;
-		public BildRepository(KompaniInfoContext context)
+		public FilRepository(KompaniInfoContext context)
 		{
 			_context = context;
 		}
-		public IEnumerable<Bild> Get()
+		public IEnumerable<Fil> Get()
 		{
-			return _context.Bild;
+			return _context.Fil;
 		}
 
-		public Bild Get(string bildnamn)
+		public Fil Get(string filnamn)
 		{
-			return _context.Bild.FirstOrDefault(t => t.Namn == bildnamn);
+			return _context.Fil.FirstOrDefault(t => t.Namn == filnamn);
 		}
 
-		public void Spara(Bild bild)
+		public void Spara(Fil fil)
 		{
-			_context.Add(bild);
+			_context.Add(fil);
 			_context.SaveChanges();
 		}
 	}

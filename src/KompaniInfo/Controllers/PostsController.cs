@@ -51,18 +51,18 @@ namespace KompaniInfo.Controllers
 		{
 			if(btn == "LaddaUppBild" && vmPost.Fil != null)
 			{
-				BildService service = new BildService();
+				FilService service = new FilService();
         if (!service.ValideraFil(vmPost.Fil))
         {
           ModelState.Clear();
           ModelState.TryAddModelError("Fil", "Fel fil");
           return View();
         }
-				var bild = service.SparaBild(vmPost.Fil);
-				_context.SparaBild(bild);
+				var fil = service.SparaFil(vmPost.Fil);
+				_context.SparaBild(fil);
 				ModelState.Clear();
-				vmPost.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
-				return View(vmPost);
+				vmPost.Innehall += service.GetHtmlString(fil);
+        return View(vmPost);
 			}
 			if (ModelState.IsValid)
 			{
@@ -94,22 +94,22 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Andra(VMPost vmPost, string btn, IFormFile fil)
+		public IActionResult Andra(VMPost vmPost, string btn)
 		{
-			if (btn == "LaddaUppBild" && fil != null)
+			if (btn == "LaddaUppBild" && vmPost.Fil != null)
 			{
-				BildService service = new BildService();
+				FilService service = new FilService();
         if (!service.ValideraFil(vmPost.Fil))
         {
           ModelState.Clear();
           ModelState.TryAddModelError("Fil", "Fel fil");
           return View();
         }
-        var bild = service.SparaBild(fil);
-				_context.SparaBild(bild);
+        var fil = service.SparaFil(vmPost.Fil);
+				_context.SparaBild(fil);
 				ModelState.Clear();
-				vmPost.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
-				return View(vmPost);
+				vmPost.Innehall += service.GetHtmlString(fil);
+        return View(vmPost);
 			}
 			if (ModelState.IsValid)
 			{
@@ -120,7 +120,7 @@ namespace KompaniInfo.Controllers
 				return RedirectToAction("index", "home");
 			}
 			else
-				return View(vmPost);
+				return View();
 		}
 
 		[Authorize(Roles = Roles.Admin)]

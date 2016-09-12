@@ -53,7 +53,7 @@ namespace KompaniInfo
 
 			services.AddScoped<IPostRepository, PostRepository>();
 			services.AddScoped<ISidaRepository, SidaRepository>();
-			services.AddScoped<IBildRepository, BildRepository>();
+			services.AddScoped<IFilRepository, FilRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

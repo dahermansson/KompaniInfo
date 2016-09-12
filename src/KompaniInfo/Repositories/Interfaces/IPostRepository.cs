@@ -15,6 +15,6 @@ namespace KompaniInfo.Repositories.Interfaces
 		void Skapa(Post post);
 		void Andra(Post post);
 		void TaBort(Post post);
-		void SparaBild(Bild bild);
+		void SparaBild(Fil bild);
 	}
 }

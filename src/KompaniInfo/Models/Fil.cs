@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KompaniInfo.Models
 {
-    public class Bild
+    public class Fil
     {
 		public int Id { get; set; }
 		[Required]
@@ -16,5 +16,6 @@ namespace KompaniInfo.Models
 		[MaxLength(5, ErrorMessage = "Filtypen kan inte vara mer än 5 tecken")]
 		public string Typ { get; set; }
 		public byte[] Data { get; set; }
-	}
+    public bool Bild { get; set; }
+  }
 }

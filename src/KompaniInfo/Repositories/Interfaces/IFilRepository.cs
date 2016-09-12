@@ -6,10 +6,10 @@ using KompaniInfo.Models;
 
 namespace KompaniInfo.Repositories.Interfaces
 {
-    public interface IBildRepository
+    public interface IFilRepository
     {
-		IEnumerable<Bild> Get();
-		void Spara(Bild bild);
-		Bild Get(string bildnamn);
+		IEnumerable<Fil> Get();
+		void Spara(Fil fil);
+		Fil Get(string filnamn);
     }
 }

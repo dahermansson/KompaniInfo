@@ -52,18 +52,18 @@ namespace KompaniInfo.Controllers
 		{
 			if (btn == "LaddaUppBild" && vmSida.Fil != null)
 			{
-				BildService service = new BildService();
+				FilService service = new FilService();
         if (!service.ValideraFil(vmSida.Fil))
         {
           ModelState.Clear();
           ModelState.TryAddModelError("Fil", "Fel fil");
           return View();
         }
-				var bild = service.SparaBild(vmSida.Fil);
-				_context.SparaBild(bild);
+				var fil = service.SparaFil(vmSida.Fil);
+				_context.SparaBild(fil);
 				ModelState.Clear();
-				vmSida.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
-				return View(vmSida);
+				vmSida.Innehall += service.GetHtmlString(fil);
+        return View(vmSida);
 			}
 			if (ModelState.IsValid)
 			{
@@ -94,22 +94,22 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Andra(VMSida vmSida, string btn, IFormFile fil)
+		public IActionResult Andra(VMSida vmSida, string btn)
 		{
-			if (btn == "LaddaUppBild" && fil != null)
+			if (btn == "LaddaUppBild" && vmSida.Fil != null)
 			{
-				BildService service = new BildService();
+				FilService service = new FilService();
         if (!service.ValideraFil(vmSida.Fil))
         {
           ModelState.Clear();
           ModelState.TryAddModelError("Fil", "Fel fil");
           return View();
         }
-        var bild = service.SparaBild(fil);
-				_context.SparaBild(bild);
+        var fil = service.SparaFil(vmSida.Fil);
+				_context.SparaBild(fil);
 				ModelState.Clear();
-				vmSida.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
-				return View();
+				vmSida.Innehall += service.GetHtmlString(fil);
+        return View(vmSida);
 			}
 			if (ModelState.IsValid)
 			{

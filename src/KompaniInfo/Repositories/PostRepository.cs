@@ -45,7 +45,7 @@ namespace KompaniInfo.Repositories
 			_context.SaveChanges();
 		}
 
-		public void SparaBild(Bild bild)
+		public void SparaBild(Fil bild)
 		{
 			_context.Add(bild);
 			_context.SaveChanges();
