@@ -11,7 +11,7 @@ namespace KompaniInfo.Services
 {
     public class BildService
     {
-		private readonly string[] _tillatnaFiltyper  = { ".png", ".jpg"};
+		private readonly string[] _tillatnaFiltyper  = { ".png", ".jpg", ".jpeg", ".gif"};
 
 		public bool ValideraFil(IFormFile fil)
 		{

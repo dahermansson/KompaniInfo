@@ -1,6 +1,7 @@
 ﻿using KompaniInfo.Models;
 using KompaniInfo.Repositories.Interfaces;
 using KompaniInfo.Services;
+using KompaniInfo.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,9 @@ namespace KompaniInfo.Controllers
 			var sida = _context.Get(id);
 			if (sida != null)
 			{
-				return View(sida);
+        SidaTransform st = new SidaTransform();
+        var vmSida = st.Transform(sida);
+				return View(vmSida);
 			}
 			else
 			{
@@ -45,26 +48,32 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Skapa(Sida sida, string btn, IFormFile fil)
+		public IActionResult Skapa(VMSida vmSida, string btn)
 		{
-			if (btn == "LaddaUppBild" && fil != null)
+			if (btn == "LaddaUppBild" && vmSida.Fil != null)
 			{
 				BildService service = new BildService();
-				if (!service.ValideraFil(fil))
-					return View(sida);
-				var bild = service.SparaBild(fil);
+        if (!service.ValideraFil(vmSida.Fil))
+        {
+          ModelState.Clear();
+          ModelState.TryAddModelError("Fil", "Fel fil");
+          return View();
+        }
+				var bild = service.SparaBild(vmSida.Fil);
 				_context.SparaBild(bild);
 				ModelState.Clear();
-				sida.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
-				return View(sida);
+				vmSida.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
+				return View(vmSida);
 			}
 			if (ModelState.IsValid)
 			{
+        SidaTransform st = new SidaTransform();
+        var sida = st.Transform(vmSida);
 				_context.Skapa(sida);
 				return RedirectToRoute("sidor", new { Id = sida.Id });
 			}
 			else
-				return View(sida);
+				return View();
 		}
 
 		[Authorize(Roles = Roles.Admin)]
@@ -73,7 +82,9 @@ namespace KompaniInfo.Controllers
 			var sida = _context.Get(id);
 			if (sida != null)
 			{
-				return View(sida);
+        SidaTransform st = new SidaTransform();
+        var vmSida = st.Transform(sida);
+				return View(vmSida);
 			}
 			else
 			{
@@ -83,26 +94,32 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Andra(Sida sida, string btn, IFormFile fil)
+		public IActionResult Andra(VMSida vmSida, string btn, IFormFile fil)
 		{
 			if (btn == "LaddaUppBild" && fil != null)
 			{
 				BildService service = new BildService();
-				if (!service.ValideraFil(fil))
-					return View(sida);
-				var bild = service.SparaBild(fil);
+        if (!service.ValideraFil(vmSida.Fil))
+        {
+          ModelState.Clear();
+          ModelState.TryAddModelError("Fil", "Fel fil");
+          return View();
+        }
+        var bild = service.SparaBild(fil);
 				_context.SparaBild(bild);
 				ModelState.Clear();
-				sida.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
-				return View(sida);
+				vmSida.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
+				return View();
 			}
 			if (ModelState.IsValid)
 			{
-				_context.Andra(sida);
+        SidaTransform st = new SidaTransform();
+        var sida = st.Transform(vmSida);
+        _context.Andra(sida);
 				return RedirectToRoute("sidor", new { Id = sida.Id });
 			}
 			else
-				return View(sida);
+				return View();
 		}
 
 		[Authorize(Roles = Roles.Admin)]

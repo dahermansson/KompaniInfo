@@ -47,14 +47,18 @@ namespace KompaniInfo.Controllers
 
 		[Authorize(Roles = Roles.Admin)]
 		[HttpPost]
-		public IActionResult Skapa(VMPost vmPost, string btn, IFormFile fil)
+		public IActionResult Skapa(VMPost vmPost, string btn)
 		{
-			if(btn == "LaddaUppBild" && fil != null)
+			if(btn == "LaddaUppBild" && vmPost.Fil != null)
 			{
 				BildService service = new BildService();
-				if (!service.ValideraFil(fil))
-					return View(vmPost);
-				var bild = service.SparaBild(fil);
+        if (!service.ValideraFil(vmPost.Fil))
+        {
+          ModelState.Clear();
+          ModelState.TryAddModelError("Fil", "Fel fil");
+          return View();
+        }
+				var bild = service.SparaBild(vmPost.Fil);
 				_context.SparaBild(bild);
 				ModelState.Clear();
 				vmPost.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";
@@ -95,9 +99,13 @@ namespace KompaniInfo.Controllers
 			if (btn == "LaddaUppBild" && fil != null)
 			{
 				BildService service = new BildService();
-				if (!service.ValideraFil(fil))
-					return View(vmPost);
-				var bild = service.SparaBild(fil);
+        if (!service.ValideraFil(vmPost.Fil))
+        {
+          ModelState.Clear();
+          ModelState.TryAddModelError("Fil", "Fel fil");
+          return View();
+        }
+        var bild = service.SparaBild(fil);
 				_context.SparaBild(bild);
 				ModelState.Clear();
 				vmPost.Innehall += Environment.NewLine + "![Alternativ text till bild](/Bild/Get/" + bild.Namn + ")";

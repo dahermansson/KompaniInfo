@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace KompaniInfo.ViewModels
@@ -16,5 +17,6 @@ namespace KompaniInfo.ViewModels
 		[MaxLength(180)]
 		[Display(Name = "Rubrik")]
 		public string Rubrik { get; set; }
-	}
+    public IFormFile Fil { get; set; }
+  }
 }
