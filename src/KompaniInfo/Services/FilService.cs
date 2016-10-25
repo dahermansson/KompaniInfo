@@ -1,11 +1,8 @@
 ﻿using KompaniInfo.Models;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace KompaniInfo.Services
 {
@@ -27,7 +24,7 @@ namespace KompaniInfo.Services
       fil.Data = new byte[formFile.Length];
       formFile.OpenReadStream().Read(fil.Data, 0, (int)formFile.Length);
       fil.Namn = Path.GetFileName(fileName);
-      fil.Typ = Path.GetExtension(formFile.FileName.TrimStart('.'));
+      fil.Typ = Path.GetExtension(formFile.FileName).TrimStart('.');
       fil.Bild = _filtyperBilder.Contains(Path.GetExtension(formFile.FileName.ToLower()));
       return fil;
 
