@@ -1,4 +1,5 @@
 ﻿using KompaniInfo.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KompaniInfo.Controllers
@@ -11,6 +12,7 @@ namespace KompaniInfo.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         public ActionResult Get(string id)
         {
             var fil = _context.Get(id);
