@@ -54,7 +54,7 @@ namespace KompaniInfo.Controllers
             await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
               new AuthenticationProperties
               {
-                  ExpiresUtc = DateTime.UtcNow.AddMinutes(60),
+                  ExpiresUtc = DateTime.UtcNow.AddDays(14),
                   IsPersistent = true,
                   AllowRefresh = true
               });
