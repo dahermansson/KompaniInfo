@@ -16,6 +16,7 @@ using KompaniInfo.Repositories.Interfaces;
 using KompaniInfo.Repositories;
 using Microsoft.AspNetCore.Routing;
 using System.Globalization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace KompaniInfo
 {
@@ -37,7 +38,8 @@ namespace KompaniInfo
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddAuthorization();
+      services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(o => o.LoginPath = new PathString("/Login/Index/"));
 			services.AddMvc(config =>
 			{
 				var policy = new AuthorizationPolicyBuilder()
@@ -85,14 +87,7 @@ namespace KompaniInfo
             });
 
 			app.UseStaticFiles();
-			app.UseCookieAuthentication(new CookieAuthenticationOptions
-			{
-				AuthenticationScheme = "Cookie",
-				LoginPath = new PathString("/Login/Index/"),
-				AccessDeniedPath = new PathString("/Login/Forbidden/"),
-				AutomaticAuthenticate = true,
-				AutomaticChallenge = true
-			});
+      app.UseAuthentication();
 
 			app.UseMvc(routes =>
 				{

@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KompaniInfo.Models;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace KompaniInfo
 {
-    public class Program
+  public class Program
+  {
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
-        }
+      BuildWebHost(args).Run();
     }
+
+    public static IWebHost BuildWebHost(string[] args)
+    {
+      var host= WebHost.CreateDefaultBuilder(args)
+          .UseStartup<Startup>()
+          .Build();
+
+      using (var scope = host.Services.CreateScope())
+      {
+        var db = scope.ServiceProvider.GetService<KompaniInfoContext>();
+        db.Database.Migrate();
+      }
+      return host;
+    }
+  }
 }

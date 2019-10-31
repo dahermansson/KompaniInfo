@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace KompaniInfo.Controllers
 {
@@ -38,7 +40,7 @@ namespace KompaniInfo.Controllers
 
         public IActionResult Logout()
         {
-            HttpContext.Authentication.SignOutAsync("Cookie");
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect("/");
         }
 
@@ -51,8 +53,8 @@ namespace KompaniInfo.Controllers
             userIdentity.AddClaims(claims);
             var userPrincipal = new ClaimsPrincipal(userIdentity);
 
-            await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
-              new AuthenticationProperties
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal,
+              new Microsoft.AspNetCore.Authentication.AuthenticationProperties
               {
                   ExpiresUtc = DateTime.UtcNow.AddDays(14),
                   IsPersistent = true,
