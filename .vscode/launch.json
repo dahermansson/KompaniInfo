@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/KompaniInfo/bin/Debug/netcoreapp2.2/KompaniInfo.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.2/KompaniInfo.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/KompaniInfo",
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
